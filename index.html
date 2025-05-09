@@ -2,16 +2,20 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>카카오맵 + KML 폴리곤 + 행정동 정보</title>
+    <title>카카오맵 + KML 폴리곤</title>
     <style>
         #map_container {
             width: 100%;
             height: 500px;
         }
     </style>
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9b4bddbadae09bdcf433079afe6487d0&libraries=services,geometry"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ol/6.15.1/ol.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ol/6.15.1/ol.css" />
+</head>
+<body>
+    <div id="map_container"></div>
+
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_KAKAO_APP_KEY&libraries=services,geometry"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ol/6.15.1/ol.js"></script>
     <script>
         // 카카오맵 초기화
         var mapContainer = document.getElementById('map_container');
@@ -50,43 +54,13 @@
                         });
                         polygon.setMap(map);
 
-                        // 폴리곤의 중심 좌표를 얻어 행정동 정보 요청
-                        var bounds = polygon.getBounds();
-                        var center = bounds.getCenter();
-                        getAdministrativeDistrict(center);
+                        // 행정동 정보 요청 및 표시 관련 코드 삭제됨
                     }
                 });
             })
             .catch(error => {
                 console.error('KML 파일 로드 오류:', error);
             });
-
-        // 좌표로 행정동 정보 얻기
-        function getAdministrativeDistrict(latlng) {
-            var geocoder = new kakao.maps.services.Geocoder();
-            geocoder.coord2RegionCode(latlng.getLng(), latlng.getLat(), function(result, status) {
-                if (status === kakao.maps.services.Status.OK) {
-                    if (result.length > 0) {
-                        var administrativeArea = result[0];
-                        var message = '행정동: ' + administrativeArea.region_3depth_name;
-                        displayInfoWindow(latlng, message);
-                    }
-                } else {
-                    console.error('행정동 정보 조회 실패:', status);
-                }
-            });
-        }
-
-        // 정보 창 표시
-        function displayInfoWindow(position, message) {
-            var infowindow = new kakao.maps.InfoWindow({
-                content: '<div style="padding:5px;">' + message + '</div>'
-            });
-            infowindow.open(map, new kakao.maps.Marker({ position: position }));
-        }
     </script>
-</head>
-<body>
-    <div id="map_container"></div>
 </body>
 </html>
