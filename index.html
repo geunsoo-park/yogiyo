@@ -1,55 +1,25 @@
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Kakao Map with GeoJSON</title>
+    <title>카카오맵 + KML 폴리곤 + 행정동 정보</title>
     <style>
-        #map { width: 100%; height: 100vh; }
+        #map_container {
+            width: 100%;
+            height: 500px;
+        }
     </style>
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_KAKAO_MAP_API_KEY"></script>
 </head>
 <body>
-<div id="map"></div>
-<script>
-    var container = document.getElementById('map');
-    var options = {
-        center: new kakao.maps.LatLng(37.5665, 126.9780),
-        level: 6
-    };
-    var map = new kakao.maps.Map(container, options);
+    <div id="map_container"></div>
 
-    fetch('map_no_z.geojson')
-        .then(response => response.json())
-        .then(geojson => {
-            kakao.maps.load(() => {
-                const geojsonObj = geojson;
-                const displayArea = new kakao.maps.CustomOverlay();
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9b4bddbadae09bdcf433079afe6487d0&libraries=services,geometry"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ol/6.15.1/ol.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ol/6.15.1/ol.css" />
 
-                geojsonObj.features.forEach(feature => {
-                    const coords = feature.geometry.coordinates;
-                    const type = feature.geometry.type;
-
-                    let path = [];
-
-                    if (type === "Polygon") {
-                        coords[0].forEach(coord => {
-                            path.push(new kakao.maps.LatLng(coord[1], coord[0]));
-                        });
-
-                        new kakao.maps.Polygon({
-                            map: map,
-                            path: path,
-                            strokeWeight: 2,
-                            strokeColor: '#FF00FF',
-                            strokeOpacity: 0.8,
-                            fillColor: '#FF99FF',
-                            fillOpacity: 0.5
-                        });
-                    }
-                });
-            });
-        });
-</script>
+    <script>
+        // 여기에 JavaScript 코드를 작성할 예정입니다.
+        console.log("카카오맵 API 및 OpenLayers 로딩 준비 완료!");
+    </script>
 </body>
 </html>
