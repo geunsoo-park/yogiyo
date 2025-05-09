@@ -9,13 +9,12 @@
             height: 500px;
         }
     </style>
-</head>
-<body>
-    <div id="map_container"></div>
-
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9b4bddbadae09bdcf433079afe6487d0&libraries=services,geometry"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ol/6.15.1/ol.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ol/6.15.1/ol.css" />
+</head>
+<body>
+    <div id="map_container"></div>
 
     <script>
         // 카카오맵 초기화
@@ -89,8 +88,6 @@
             });
             infowindow.open(map, new kakao.maps.Marker({ position: position }));
         }
-        // 여기에 JavaScript 코드를 작성할 예정입니다.
-        console.log("카카오맵 API 및 OpenLayers 로딩 준비 완료!");
     </script>
 </body>
 </html>
