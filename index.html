@@ -12,10 +12,6 @@
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9b4bddbadae09bdcf433079afe6487d0&libraries=services,geometry"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ol/6.15.1/ol.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ol/6.15.1/ol.css" />
-</head>
-<body>
-    <div id="map_container"></div>
-
     <script>
         // 카카오맵 초기화
         var mapContainer = document.getElementById('map_container');
@@ -89,5 +85,8 @@
             infowindow.open(map, new kakao.maps.Marker({ position: position }));
         }
     </script>
+</head>
+<body>
+    <div id="map_container"></div>
 </body>
 </html>
