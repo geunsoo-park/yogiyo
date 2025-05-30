@@ -2,65 +2,42 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>카카오맵 + KML 폴리곤</title>
+    <title>카카오맵 연동 예제</title>
     <style>
-        #map_container {
+        /* 지도를 표시할 div 요소의 크기를 지정합니다. */
+        #map {
             width: 100%;
-            height: 500px;
+            height: 500px; /* 원하는 높이로 조절하세요. */
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ol/6.15.1/ol.css" />
 </head>
 <body>
-    <div id="map_container"></div>
 
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9b4bddbadae09bdcf433079afe6487d0&libraries=services,geometry"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ol/6.15.1/ol.js"></script>
-    <script>
-        // 카카오맵 초기화
-        var mapContainer = document.getElementById('map_container');
-        var mapOption = {
-            center: new kakao.maps.LatLng(37.566826, 126.9786567), // 서울 중심
-            level: 10
+<h1>내 프로젝트에 카카오맵 표시하기</h1>
+
+<div id="map"></div>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9b4bddbadae09bdcf433079afe6487d0"></script>
+<script>
+    // 2단계: JavaScript로 지도 생성하기
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        mapOption = {
+            center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표 (예: 서울시청)
+            level: 3 // 지도의 확대 레벨
         };
-        var map = new kakao.maps.Map(mapContainer, mapOption);
 
-        // KML 파일 로드 및 폴리곤 그리기
-        fetch('my_polygon.kml') // 여기에 실제 KML 파일 이름을 넣어주세요.
-            .then(response => response.text())
-            .then(kmlData => {
-                var parser = new ol.format.KML();
-                var features = parser.readFeatures(kmlData, {
-                    dataProjection: 'EPSG:4326',
-                    featureProjection: 'EPSG:3857'
-                });
+    // 지도를 생성합니다
+    var map = new kakao.maps.Map(mapContainer, mapOption);
 
-                features.forEach(feature => {
-                    if (feature.getGeometry().getType() === 'Polygon') {
-                        var coordinates = feature.getGeometry().getCoordinates()[0];
-                        var path = [];
+    // 여기에 추가적인 마커 표시, 컨트롤 추가 등의 코드를 작성할 수 있습니다.
+    // 예: 마커 하나를 지도 중심에 표시
+    var markerPosition  = new kakao.maps.LatLng(37.566826, 126.9786567);
+    var marker = new kakao.maps.Marker({
+        position: markerPosition
+    });
+    marker.setMap(map);
 
-                        coordinates.forEach(coord => {
-                            path.push(new kakao.maps.LatLng(coord[1], coord[0]));
-                        });
+</script>
 
-                        var polygon = new kakao.maps.Polygon({
-                            path: [path],
-                            strokeWeight: 2,
-                            strokeColor: '#FF0000',
-                            strokeOpacity: 0.8,
-                            fillColor: '#FF0000',
-                            fillOpacity: 0.3
-                        });
-                        polygon.setMap(map);
-
-                        // 행정동 정보 요청 및 표시 관련 코드 삭제됨
-                    }
-                });
-            })
-            .catch(error => {
-                console.error('KML 파일 로드 오류:', error);
-            });
-    </script>
 </body>
 </html>
