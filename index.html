@@ -1,43 +1,156 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-    <meta charset="utf-8">
-    <title>카카오맵 연동 예제</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Housewarming Dinner Invitation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=Gowun+Dodum&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
-        /* 지도를 표시할 div 요소의 크기를 지정합니다. */
-        #map {
-            width: 100%;
-            height: 500px; /* 원하는 높이로 조절하세요. */
+        /* 사용자 정의 폰트 클래스 */
+        body {
+            font-family: 'Gowun Dodum', sans-serif;
+        }
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        .font-cormorant {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        /* 간단한 구분선 스타일 */
+        .divider {
+            width: 80%;
+            margin: 1.5rem auto;
+            border-top: 1px solid #e5e7eb;
+        }
+        .menu-item {
+             margin-bottom: 0.5rem;
+        }
+        /* 로딩 스피너 스타일 */
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 4px solid #5a4b41;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
-<body>
+<body class="bg-stone-100 flex items-center justify-center min-h-screen p-4">
 
-<h1>내 프로젝트에 카카오맵 표시하기</h1>
+    <!-- 초대장 카드 -->
+    <div class="bg-white text-stone-800 rounded-lg shadow-2xl max-w-md w-full p-8 sm:p-12 text-center">
 
-<div id="map"></div>
+        <!-- 헤더 섹션 -->
+        <header class="mb-8">
+            <h1 class="font-playfair text-3xl sm:text-4xl tracking-widest text-stone-900">HOUSEWARMING DINNER</h1>
+            <p class="font-cormorant text-xl sm:text-2xl italic mt-2 text-stone-600">with [슬기로운 서부 생활]</p>
+            <p class="text-lg mt-6 font-semibold text-stone-700">📍 25.07.26, 15:00</p>
+        </header>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9b4bddbadae09bdcf433079afe6487d0"></script>
-<script>
-    // 2단계: JavaScript로 지도 생성하기
-    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-        mapOption = {
-            center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표 (예: 서울시청)
-            level: 3 // 지도의 확대 레벨
-        };
+        <div class="divider"></div>
 
-    // 지도를 생성합니다
-    var map = new kakao.maps.Map(mapContainer, mapOption);
+        <!-- 메뉴 섹션 -->
+        <section class="mb-8">
+            <h2 class="font-playfair text-2xl tracking-widest mb-6 text-stone-900">MENU</h2>
+            <div class="text-left w-fit mx-auto">
+                <p class="font-cormorant text-lg italic text-stone-600 mb-2">Appetizer</p>
+                <p class="menu-item text-stone-700">- 아보카도 육회</p>
+                
+                <p class="font-cormorant text-lg italic text-stone-600 mt-4 mb-2">Main</p>
+                <p class="menu-item text-stone-700">- 고등어 봉초밥</p>
+                <p class="menu-item text-stone-700">- 시원한 냉모밀</p>
+                <p class="menu-item text-stone-700">- 신선한 모둠회</p>
+                <p class="menu-item text-stone-700">- 밀푀유나베</p>
 
-    // 여기에 추가적인 마커 표시, 컨트롤 추가 등의 코드를 작성할 수 있습니다.
-    // 예: 마커 하나를 지도 중심에 표시
-    var markerPosition  = new kakao.maps.LatLng(37.566826, 126.9786567);
-    var marker = new kakao.maps.Marker({
-        position: markerPosition
-    });
-    marker.setMap(map);
+                <p class="font-cormorant text-lg italic text-stone-600 mt-4 mb-2">Dessert</p>
+                <p class="menu-item text-stone-700">- 케이크</p>
+            </div>
+        </section>
 
-</script>
+        <div class="divider"></div>
+        
+        <!-- 음료 섹션 -->
+        <section class="mb-8">
+            <h2 class="font-playfair text-2xl tracking-widest mb-6 text-stone-900">DRINKS</h2>
+            <div class="text-left w-fit mx-auto text-stone-700">
+                <p class="menu-item">• 샴페인</p>
+                <p class="menu-item">• 화이트와인</p>
+                <p class="menu-item">• 하이볼</p>
+                <p class="menu-item">• 증류주</p>
+                <p class="menu-item">• 맥주</p>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- 주류 추천 기능 섹션 -->
+        <section class="mt-4">
+             <button id="recommendation-button" class="bg-stone-700 hover:bg-stone-800 text-white font-bold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105">
+                ✨ 메뉴와 어울리는 주류 추천받기
+            </button>
+            <div id="recommendation-result" class="mt-6 text-left p-4 bg-stone-50 rounded-lg" style="display: none;">
+                <!-- 추천 내용이 여기에 표시됩니다. -->
+            </div>
+             <div id="loading-indicator" style="display: none;" class="loader"></div>
+        </section>
+        
+        <!-- 미리 생성된 추천 내용 (숨겨져 있음) -->
+        <div id="pre-generated-recommendation" style="display: none;">
+            <h3 class="font-playfair text-xl font-bold mb-4 text-center">Sommelier's Pairing Note</h3>
+            
+            <h4 class="font-cormorant text-lg font-bold mt-4 mb-2 italic">Appetizer: 아보카도 육회</h4>
+            <p class="mb-2 ml-2"><strong>추천: 샴페인 또는 드라이 스파클링 와인</strong><br>신선한 육회의 고소함과 아보카도의 부드러움을 섬세한 버블이 감싸주며 입맛을 돋우는 완벽한 시작을 선사합니다.</p>
+            
+            <h4 class="font-cormorant text-lg font-bold mt-4 mb-2 italic">Main Dishes</h4>
+            <p class="mb-2 ml-2"><strong>추천 1 (해산물): 사케 (준마이 다이긴죠)</strong><br>고등어 봉초밥과 모둠회의 섬세한 맛을 해치지 않고, 은은한 과일 향으로 감칠맛을 극대화하는 최고의 조합입니다.</p>
+            <p class="mb-2 ml-2"><strong>추천 2 (나베/모밀): 소비뇽 블랑</strong><br>밀푀유나베와 냉모밀의 깔끔한 국물 맛에 상큼한 화이트 와인이 더해져 입안을 개운하게 정리해줍니다.</p>
+
+            <h4 class="font-cormorant text-lg font-bold mt-4 mb-2 italic">Dessert: 케이크</h4>
+            <p class="mb-2 ml-2"><strong>추천: 모스카토 다스티</strong><br>기분 좋은 단맛과 향긋한 아로마를 지닌 스위트 와인이 케이크의 풍미를 한층 끌어올려 저녁 식사의 완벽한 마무리를 약속합니다.</p>
+        </div>
+
+
+        <!-- 푸터 섹션 -->
+        <footer class="mt-8">
+            <p class="text-base text-stone-600 leading-relaxed">
+                밥 한 끼, 술 한 잔,<br>그리고 좋은 사람들과 함께하는 집들이.
+            </p>
+        </footer>
+
+    </div>
+
+    <script>
+        const recommendationButton = document.getElementById('recommendation-button');
+        const resultContainer = document.getElementById('recommendation-result');
+        const loadingIndicator = document.getElementById('loading-indicator');
+        // 미리 생성된 추천 내용의 HTML을 가져옵니다.
+        const preGeneratedContent = document.getElementById('pre-generated-recommendation').innerHTML;
+
+        recommendationButton.addEventListener('click', () => {
+            // 버튼을 숨기고 로딩 인디케이터를 보여줍니다.
+            recommendationButton.style.display = 'none';
+            loadingIndicator.style.display = 'block';
+
+            // AI가 생각하는 것처럼 보이도록 짧은 지연 시간을 줍니다.
+            setTimeout(() => {
+                // 로딩 인디케이터를 숨깁니다.
+                loadingIndicator.style.display = 'none';
+                
+                // 미리 생성된 추천 내용을 결과 컨테이너에 넣고 보여줍니다.
+                resultContainer.innerHTML = preGeneratedContent;
+                resultContainer.style.display = 'block';
+            }, 1000); // 1초 지연
+        });
+    </script>
 
 </body>
 </html>
