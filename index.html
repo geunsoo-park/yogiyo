@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>요기요 협력사 모집 - 함께 성장할 파트너를 모십니다</title>
+    <style>
+        /* 기본 스타일 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            min-height: 100vh;
+        }
+
+        /* 헤더 (요기요 시그니처 레드) */
+        .header {
+            background-color: #fa0050;
+            color: #ffffff;
+            padding: 50px 20px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        .header p {
+            font-size: 15px;
+            color: #ffccdc;
+        }
+
+        /* 강조 포인트 (배너 느낌 - 연한 핑크 바탕) */
+        .highlight-banner {
+            background-color: #fffafb;
+            border-left: 4px solid #fa0050;
+            padding: 22px;
+            margin: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(250, 0, 80, 0.05);
+        }
+        .highlight-banner h3 {
+            font-size: 17px;
+            color: #fa0050;
+            margin-bottom: 10px;
+        }
+        .highlight-banner p {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        /* 폼 섹션 */
+        .form-section {
+            padding: 10px 20px 40px;
+        }
+        .form-section h2 {
+            font-size: 19px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #fa0050;
+            color: #222;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            font-size: 14px;
+            color: #444;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background-color: #fafafa;
+        }
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #fa0050;
+            background-color: #fff;
+            box-shadow: 0 0 0 2px rgba(250, 0, 80, 0.1);
+        }
+
+        /* 체크박스 */
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            padding: 18px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+        .checkbox-group input {
+            margin-top: 3px;
+            margin-right: 12px;
+            width: 20px;
+            height: 20px;
+            accent-color: #fa0050;
+        }
+        .checkbox-group label {
+            font-size: 13.5px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* 제출 버튼 */
+        .submit-btn {
+            width: 100%;
+            background-color: #fa0050;
+            color: white;
+            border: none;
+            padding: 18px;
+            font-size: 17px;
+            font-weight: 800;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+        .submit-btn:hover {
+            background-color: #e00048;
+        }
+        .submit-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* 푸터 */
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 13px;
+            color: #999;
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header class="header">
+        <h1>요기요와 함께 성장할<br>든든한 파트너를 모십니다.</h1>
+        <p>배달 대행사, 지사 등 전문 협력사를 위한 특별한 혜택</p>
+    </header>
+
+    <div class="highlight-banner">
+        <h3>✨ 요기요 협력사만의 특별한 장점</h3>
+        <p>
+            • 요기요의 탄탄한 주문 데이터 기반 안정적 수익<br>
+            • 지역 맞춤형 프로모션 및 협력사 전담 매니저 밀착 관리<br>
+            • 쉽고 직관적인 지사 전용 관리 시스템 제공
+        </p>
+    </div>
+
+    <section class="form-section">
+        <h2>협력사 입점 문의</h2>
+        <form id="agencyForm" onsubmit="submitForm(event)">
+            
+            <div class="form-group">
+                <label for="companyName">상호명 (법인/개인사업자)</label>
+                <input type="text" id="companyName" placeholder="예: (주)요기배달 강남지사" required>
+            </div>
+
+            <div class="form-group">
+                <label for="repName">대표자명</label>
+                <input type="text" id="repName" placeholder="홍길동" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">담당자 연락처 (- 없이 입력)</label>
+                <input type="tel" id="phone" placeholder="01012345678" pattern="[0-9]+" required>
+            </div>
+
+            <div class="form-group">
+                <label for="region">주요 활동 희망 지역</label>
+                <input type="text" id="region" placeholder="예: 서울시 강남구, 서초구 일대" required>
+            </div>
+
+            <div class="form-group">
+                <label for="riderCount">현재 활동 가능한 라이더 수</label>
+                <select id="riderCount" required>
+                    <option value="" disabled selected>규모를 선택해주세요</option>
+                    <option value="under_10">10명 미만 (신규 지사 포함)</option>
+                    <option value="10_to_30">10명 ~ 30명</option>
+                    <option value="30_to_50">30명 ~ 50명</option>
+                    <option value="over_50">50명 이상</option>
+                </select>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="privacy" required>
+                <label for="privacy">
+                    <strong>[필수] 개인정보 수집 및 이용 동의</strong><br>
+                    입점 상담 및 안내를 위해 이름, 연락처, 상호명을 수집하며, 목적 달성 후 지체 없이 파기합니다.
+                </label>
+            </div>
+
+            <button type="submit" class="submit-btn">요기요 협력사 상담 신청하기</button>
+        </form>
+    </section>
+
+    <footer class="footer">
+        <p>© Yogiyo Delivery Partner. All rights reserved.</p>
+    </footer>
+</div>
+
+<script>
+    function submitForm(event) {
+        event.preventDefault(); 
+        
+        const companyName = document.getElementById('companyName').value;
+        const repName = document.getElementById('repName').value;
+        
+        alert(`접수 완료되었습니다!\n\n${companyName} (${repName} 대표님)의 협력사 입점 신청이 정상적으로 등록되었습니다.\n요기요 담당 매니저가 영업일 기준 1~2일 내로 빠르게 연락드리겠습니다.`);
+        
+        document.getElementById('agencyForm').reset();
+    }
+</script>
+
+</body>
+</html>
