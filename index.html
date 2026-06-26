@@ -1,1 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>나의 첫 카카오맵</title>
+</head>
+<body>
+    <div id="map" style="width:100%;height:500px;"></div>
 
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9b4bddbadae09bdcf433079afe6487d0"></script>
+    
+    <script>
+        // 지도를 표시할 HTML 요소 선택
+        var mapContainer = document.getElementById('map'); 
+        
+        // 지도의 중심 좌표와 확대 레벨 설정 (아래는 서울시청 좌표입니다)
+        var mapOption = { 
+            center: new kakao.maps.LatLng(37.566826, 126.9786567), 
+            level: 3 
+        };
+
+        // 지도 생성하기
+        var map = new kakao.maps.Map(mapContainer, mapOption); 
+    </script>
+</body>
+</html>
