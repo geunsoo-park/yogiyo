@@ -1,32 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>나의 첫 카카오맵</title>
-    <style>
-        /* 브라우저 기본 여백을 없애줍니다 */
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-        }
-    </style>
+	<meta charset="utf-8"/>
+	<title>Kakao 지도 시작하기</title>
 </head>
 <body>
-    <div id="map" style="width:100%; height:100vh;"></div>
+	<div id="map" style="width:500px;height:400px;"></div>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9b4bddbadae09bdcf433079afe6487d0"></script>
+	<script>
+		var container = document.getElementById('map');
+		var options = {
+			center: new kakao.maps.LatLng(33.450701, 126.570667),
+			level: 3
+		};
 
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9b4bddbadae09bdcf433079afe6487d0"></script>
-    
-    <script>
-        var mapContainer = document.getElementById('map'); 
-        
-        var mapOption = { 
-            center: new kakao.maps.LatLng(37.566826, 126.9786567), 
-            level: 3 
-        };
-
-        var map = new kakao.maps.Map(mapContainer, mapOption); 
-    </script>
+		var map = new kakao.maps.Map(container, options);
+	</script>
 </body>
 </html>
